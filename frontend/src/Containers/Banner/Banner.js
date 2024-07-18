@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
-
 const Banner = () => {
 
     const [movie, setMovie] = useState('');
@@ -31,7 +30,7 @@ const Banner = () => {
     
 
   return (
-    <>
+    <div className='banner_wrapper'>
       <div className='banner__background' 
         style={{
             backgroundSize: "cover",
@@ -58,7 +57,7 @@ const Banner = () => {
           <button className='banner__content-buttons_addListButton buttons'><FontAwesomeIcon className="icon" icon={faPlus}/>ADD LIST</button>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

@@ -12,6 +12,7 @@ const Navbar = () => {
                 <li href='#'>Home</li>
                 <li href='#'>Movies</li>
                 <li href='#'>TV Shows</li>
+                <li href='#'>Documentaries</li>
             </ul>
         <div className='navBar__search'>
             <img src={search} alt='Search Icon'/>
