@@ -1,6 +1,10 @@
-import './App.css';
+import Login from './Containers/Account/login.js';
 import Home from './Containers/Home/Home.js';
-import Movies from './Containers/Movies/Movies.js';
+import SignUp from './Containers/Account/signup.js';
+import Movie from './Containers/Movie/movie.js';
+import TVSeries from './Containers/TVSeries/tvSeries.js';
+import Docs from './Containers/Docs/doc.js';
+import Trailer from './Components/Trailer/trailer.js';
 import {
   BrowserRouter as Router,
   Route,
@@ -13,7 +17,12 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='movies' element={<Movies/>} />
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/signup' element={<SignUp />}/>
+          <Route path='/movies' element={<Movie/>}/>
+          <Route path='/series' element={<TVSeries/>}/>
+          <Route path="/docs" element={<Docs/>}/>
+          <Route path='/trailer' element={<Trailer/>}/>
         </Routes>
       </Router>
     </div>

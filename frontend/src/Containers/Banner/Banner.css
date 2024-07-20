@@ -27,7 +27,7 @@
 	width: 100%;
 	background: linear-gradient(
 		90deg,
-		rgba(7, 9, 18, 0.7) 0%,
+		rgba(7, 9, 18, 0.9) 0%,
 		rgba(7, 9, 18, 0) 100%
 	);
 	z-index: 1;
@@ -75,6 +75,7 @@
 	font-weight: 500;
 	font-size: 3.2rem;
 	margin-top: 2rem;
+	letter-spacing: 0.1rem;
 }
 
 .banner__content p {
