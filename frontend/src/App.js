@@ -5,6 +5,7 @@ import Movie from './Containers/Movie/movie.js';
 import TVSeries from './Containers/TVSeries/tvSeries.js';
 import Docs from './Containers/Docs/doc.js';
 import Trailer from './Components/Trailer/trailer.js';
+import Content from './Containers/Content/content.js';
 import {
   BrowserRouter as Router,
   Route,
@@ -23,6 +24,7 @@ function App() {
           <Route path='/series' element={<TVSeries/>}/>
           <Route path="/docs" element={<Docs/>}/>
           <Route path='/trailer' element={<Trailer/>}/>
+          <Route path="/addContent" element={<Content/>}/>
         </Routes>
       </Router>
     </div>
