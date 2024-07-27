@@ -23,7 +23,7 @@ function App() {
           <Route path='/movies' element={<Movie/>}/>
           <Route path='/series' element={<TVSeries/>}/>
           <Route path="/docs" element={<Docs/>}/>
-          <Route path='/trailer' element={<Trailer/>}/>
+          <Route path='/trailer/:movie_id' element={<Trailer/>}/>
           <Route path="/addContent" element={<Content/>}/>
         </Routes>
       </Router>

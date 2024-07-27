@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import './trailer.css';
 import { backdrop4 } from "../../assets/images";
+import { useParams } from 'react-router-dom';
+import movieImages from "../../assets/movie/movieImages";
 
 const Trailer = () => {
+
+    const { movie_id } = useParams();
+
+    const [movie, setMovie] = useState('');
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const result = await fetch(`http://localhost:8081/getMovieById/${movie_id}`);
+                setMovie(await result.json());
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    }, []);
+
     return(
         <div className="wrapper__trailer">
             <Navbar />
@@ -14,10 +33,10 @@ const Trailer = () => {
                     </div>
                     <div className="firstSection-middle"></div>
                     <div className="firstSection-right">
-                        <img src={backdrop4} alt="Back Drop"/>
+                        <img src={movieImages[movie.backdrop_path]} alt="Back Drop"/>
                         <div>
-                            <p>Planet Apes</p>
-                            <p>dfsdhk fkdshfjkds hfkjds hfkjds hfjkd shkjf dshjkf hdskjfh dskj hfkdsj fkdjs fkds kjds hfkjds fkjd skfjdh skjf dshkfj</p> 
+                            <p>{movie.name}</p>
+                            <p>{movie.overview}</p> 
                         </div>
                     </div>
                 </div>

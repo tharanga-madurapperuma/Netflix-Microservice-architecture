@@ -1,32 +1,33 @@
 import React, {useEffect, useState} from 'react';
 import './Banner.css';
-import requests from '../requests';
-import axios from '../axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
-
+import images from '../../assets/bannerImages';
 
 const Banner = () => {
 
     const [movie, setMovie] = useState('');
-    const [uniqueMovie, setUniqueMovie] = useState('');
 
     useEffect(() => {
-        async function fetchData(){
-            const request = await axios.get(requests.fetchAdventure);
-            const fetchedMovie = request.data.results[
-              Math.floor(Math.random() * request.data.results.length - 1)
+        const fetchData = async () => {
+          try {
+            const result = await fetch('http://localhost:8081/getAllMovies');
+            const jsonResult = await result.json();
+
+            const fetchedMovie = jsonResult[
+              Math.floor(Math.random() * jsonResult.length)
             ]
-            setMovie(fetchedMovie);
-            const uniqueRequest = await axios.get(`/movie/${fetchedMovie.id}?api_key=402ab982f69b1e475e37d7f951d28493&append_to_response=videos`);
-            setUniqueMovie(uniqueRequest.data);
-        };
+
+          setMovie(fetchedMovie);
+          } catch (error) {
+            console.log(error)
+          }
+        }
+
         fetchData();
     }, []);
 
-    //console.log(movie);
-    console.log(uniqueMovie);
-    console.log(uniqueMovie.genres);
+    console.log(movie);
     
 
   return (
@@ -35,7 +36,7 @@ const Banner = () => {
         style={{
             backgroundSize: "cover",
             backgroundImage: `url(
-              "https://image.tmdb.org/t/p/original/${movie?.backdrop_path}"
+              ${images[movie.backdrop_path]}
             )`,
             backgroundPosition: "center center",
         }}
@@ -46,10 +47,11 @@ const Banner = () => {
       <div className='banner__bottomGradient' />
 
       <div className='banner__content'>
-        <h4>Duration: {uniqueMovie.runtime} min</h4>
+        <img src=""></img>
+        <h4>Duration: {movie?.watch_time} min</h4>
         <h3>{movie?.vote_average}</h3>
-        {/* <h5>{uniqueMovie.genres[0].name} | {uniqueMovie.genres[1].name}</h5> */}
-        <h2>{movie?.title}</h2>
+        <h5>{movie?.genres}</h5>
+        <h2>{movie?.name}</h2>
         <p>{movie?.overview}</p>
         
         <div className='banner__content-buttons'>
