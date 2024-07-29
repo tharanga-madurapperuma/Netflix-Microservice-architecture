@@ -1,31 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./tvSeries.css"
 import Navbar from "../../Components/Navbar/Navbar";
-import { poster6, poster7, poster8, poster9, poster10} from "../../assets/images"; 
+import { useNavigate } from "react-router-dom";
+import seriesImages from '../../assets/series/seriesImages';
 
 const TVSeries = () => {
+    const navigate = useNavigate();
+    const [series, setSeries] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () =>{
+            try {
+                const result = await fetch('http://localhost:8081/getAllSeries');
+                setSeries(await result.json());
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    }, []);
     return(
         <div className="wrapper__tvSeries">
             <Navbar />
             <div className="tvSeries-heading">
                 <h1>TV Series</h1>
             </div>
-            {/* <div className="movie-trailer">
-                <iframe width="650" height="365" src="https://www.youtube.com/embed/XtFI7SNtVpY?si=cvxRUiy8YrDK3QV0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-            </div> */}
             <div className="tvSeries_scroll-wrapper">
                 
                 <div className="scroll-content">
-                    <img src={poster6} alt="poster"/>
-                    <img src={poster7} alt="poster"/>
-                    <img src={poster8} alt="poster"/>
-                    <img src={poster9} alt="poster"/>
-                    <img src={poster10} alt="poster"/>
-                    <img src={poster6} alt="poster"/>
-                    <img src={poster7} alt="poster"/>
-                    <img src={poster8} alt="poster"/>
-                    <img src={poster9} alt="poster"/>
-                    <img src={poster10} alt="poster"/>
+                {series.map(series => (
+                        <img src={seriesImages[series.poster_path]} alt={seriesImages[series.name]} onClick={() => {navigate(`/tvSeriesTrailer/${series.series_id}`)}}/>
+                    ))}
                 </div>
                 <div></div>
                 <div></div>

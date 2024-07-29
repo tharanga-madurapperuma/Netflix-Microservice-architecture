@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
-import './trailer.css';
-import { backdrop4 } from "../../assets/images";
-import { useParams } from 'react-router-dom';
-import movieImages from "../../assets/movie/movieImages";
+import '../MovieTrailer/movieTrailer.css';
+import docImages from '../../assets/documentry/docImages';
+import { useParams } from "react-router-dom";
 
-const Trailer = () => {
+const DocTrailer = () => {
+    const { doc_id } = useParams();
 
-    const { movie_id } = useParams();
-
-    const [movie, setMovie] = useState('');
+    const [doc, setDoc] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await fetch(`http://localhost:8081/getMovieById/${movie_id}`);
-                setMovie(await result.json());
+                const result = await fetch(`http://localhost:8081/getDocById/${doc_id}`);
+                setDoc(await result.json());
             } catch (error) {
                 console.log(error);
             }
@@ -23,20 +21,20 @@ const Trailer = () => {
         fetchData();
     }, []);
 
-    return(
+    return (
         <div className="wrapper__trailer">
             <Navbar />
             <div className="trailer-box">
                 <div className="trailer-box_firstSection">
                     <div className="firstSection-left">
-                        <iframe width="550" height="320" src="https://www.youtube.com/embed/XtFI7SNtVpY?si=cvxRUiy8YrDK3QV0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                        <iframe width="550" height="320" src={doc.trailer} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                     </div>
                     <div className="firstSection-middle"></div>
                     <div className="firstSection-right">
-                        <img src={movieImages[movie.backdrop_path]} alt="Back Drop"/>
+                        <img src={docImages[doc.backdrop_path]} alt="Back Drop"/>
                         <div>
-                            <p>{movie.name}</p>
-                            <p>{movie.overview}</p> 
+                            <p className="firstSection-right-topic">{doc.name}</p>
+                            <p className="firstSection-right-overview">{doc.overview}</p> 
                         </div>
                     </div>
                 </div>
@@ -54,5 +52,4 @@ const Trailer = () => {
     );
 }
 
-export default Trailer;
-
+export default DocTrailer;

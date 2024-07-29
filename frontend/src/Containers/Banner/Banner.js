@@ -3,10 +3,12 @@ import './Banner.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
 import images from '../../assets/bannerImages';
+import { useNavigate } from 'react-router-dom';
 
 const Banner = () => {
 
     const [movie, setMovie] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -55,7 +57,7 @@ const Banner = () => {
         <p>{movie?.overview}</p>
         
         <div className='banner__content-buttons'>
-          <button className='banner__content-buttons_watchButton buttons'><FontAwesomeIcon className="icon" icon={faPlay}/>WATCH</button>
+          <button onClick={() => {navigate(`/trailer/${movie.movie_id}`)}} className='banner__content-buttons_watchButton buttons'><FontAwesomeIcon className="icon" icon={faPlay}/>WATCH</button>
           <button className='banner__content-buttons_addListButton buttons'><FontAwesomeIcon className="icon" icon={faPlus}/>ADD LIST</button>
         </div>
       </div>
