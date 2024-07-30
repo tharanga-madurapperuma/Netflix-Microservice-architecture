@@ -22,7 +22,7 @@ const MovieTrailer = () => {
         fetchData();
     }, []);
 
-    console.log(movie.trailer);
+    console.log(movie.backdrop_path);
 
     return(
         <div className="wrapper__trailer">

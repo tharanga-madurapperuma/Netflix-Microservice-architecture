@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./content.css";
 
 const Content = () => {
+    const [user, setUser] = useState();
+    
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem("loggedUser")));
+    },[]);
+
+    
     return(
         <div className="wrapper__content">
             <Navbar/>
             <div className="content_container">
-                <h1>Welcome <span>Tharanga</span></h1>
+                <h1>Welcome <span>{user.name}</span></h1>
                 <div className="container-box">
                     <label>Choose the content</label><br></br>
                     <select>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import seriesImages from "../../assets/documentry/docImages";
+import seriesImages from "../../assets/series/seriesImages";
 import '../../Components/MovieTrailer/movieTrailer.css'
 import { useParams } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";

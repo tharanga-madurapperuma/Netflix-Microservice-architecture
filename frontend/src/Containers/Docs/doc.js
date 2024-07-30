@@ -30,7 +30,7 @@ const Docs = () => {
                 
                 <div className="scroll-content">
                 {docs.map(doc => (
-                        <img src={docImages[doc.poster_path]} alt={docImages[doc.name]} onClick={() => {navigate(`/DocTrailer/${doc.doc_id}`)}}/>
+                        <img src={docImages[doc.poster_path]} alt={docImages[doc.name]} onClick={() => {navigate(`/docTrailer/${doc.doc_id}`)}}/>
                     ))}
                 </div>
                 <div></div>

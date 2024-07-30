@@ -57,7 +57,7 @@ const Banner = () => {
         <p>{movie?.overview}</p>
         
         <div className='banner__content-buttons'>
-          <button onClick={() => {navigate(`/trailer/${movie.movie_id}`)}} className='banner__content-buttons_watchButton buttons'><FontAwesomeIcon className="icon" icon={faPlay}/>WATCH</button>
+          <button onClick={() => {navigate(`/movieTrailer/${movie.movie_id}`)}} className='banner__content-buttons_watchButton buttons'><FontAwesomeIcon className="icon" icon={faPlay}/>WATCH</button>
           <button className='banner__content-buttons_addListButton buttons'><FontAwesomeIcon className="icon" icon={faPlus}/>ADD LIST</button>
         </div>
       </div>
