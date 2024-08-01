@@ -12,7 +12,7 @@ const Content = () => {
 
     function checkContent(){
         const inputContent = document.getElementById("inputContent").value
-        console.log(inputContent);
+        
     }
 
     return(
