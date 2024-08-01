@@ -1,27 +1,57 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./account.css"
 import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
   const navigate = useNavigate(); 
+  const [gUser, setGUser] = useState();
+  const [email, setEmail] = useState('');
 
-      const saveUserData = async (name, email, password) => {
-      fetch('http://localhost:8081/addGUser',{
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          password: password
-        })
+  const saveUserData = async (name, email, password) => {
+    fetch('http://localhost:8081/addGUser',{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password
       })
+    })
+  }
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userResult = await fetch(`http://localhost:8081/getGUserByEmail/${email}`);
+        setGUser(await userResult.json());
+    
+      } catch (error) {
+        console.log(error);
+      }
     }
+    fetchUserData();
+    
+  },[email]);
+
 
   const userValidation = () => {
+    const name = document.getElementById("name").value;
+    const password = document.getElementById("password").value;
 
+    if(gUser?.email === email){
+      alert("User already exists, Please login..!");
+
+    }
+    else{
+      saveUserData(name, email, password);
+
+      localStorage.setItem("userEmail", email);
+      navigate('/');
+      
+    }
   }
 
   return (
@@ -30,13 +60,13 @@ const SignUp = () => {
         <div className='create-box'>
             <form>
                 <label className='login-box-label'>SIGN UP</label>
-                <input className='login-box-userInputs' type='text' placeholder='Enter your name'></input>
+                <input required className='login-box-userInputs' type='text' placeholder='Enter your name' id='name'></input>
                 {/* <input className='login-box-userInputs' type='text' placeholder='Enter your last name'></input> */}
-                <input className='login-box-userInputs' type='text' placeholder='Enter your email'></input>
-                <input className='login-box-userInputs' type='text' placeholder='Enter your password'></input>
+                <input required className='login-box-userInputs' type='text' placeholder='Enter your email' id='email' value={email} onChange={event => setEmail(event.target.value)}></input>
+                <input className='login-box-userInputs' type='text' placeholder='Enter your password' id='password'></input>
                 {/* <label className='login-box-profileText'>Upload a profile picture</label> */}
                 {/* <input className='login-box-userInputs' type='file' /> */}
-                <label className='login-box-linkToPage' onClick={() => {navigate('/login')}}>👉 Are you a existing user? Login here...</label>
+                <label required className='login-box-linkToPage' onClick={() => {navigate('/login')}}>👉 Are you a existing user? Login here...</label>
                 <input className='login-box-CreateButton' type='button' value='Create Account' onClick={userValidation}></input>
             </form>
         </div>

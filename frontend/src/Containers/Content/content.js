@@ -7,17 +7,23 @@ const Content = () => {
     
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem("loggedUser")));
+        console.log(localStorage);
     },[]);
 
-    
+    function checkContent(){
+        const inputContent = document.getElementById("inputContent").value
+        console.log(inputContent);
+    }
+
     return(
         <div className="wrapper__content">
             <Navbar/>
             <div className="content_container">
-                <h1>Welcome <span>{user.name}</span></h1>
+                <h1>Welcome <span>{user?.name || "guest"}</span></h1>
                 <div className="container-box">
                     <label>Choose the content</label><br></br>
-                    <select>
+                    <select id="inputContent" onChange={checkContent}>
+                        <option>Check one of content</option>
                         <option>Movie</option>
                         <option>TV Series</option>
                         <option>Documentary</option>

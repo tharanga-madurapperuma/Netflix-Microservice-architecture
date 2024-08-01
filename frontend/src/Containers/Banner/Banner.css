@@ -96,6 +96,12 @@
 	font-size: 1.1rem;
 }
 
+.banner__content span {
+	font-weight: 400;
+	margin-top: 15px;
+	font-size: 1.1rem;
+}
+
 .icon {
 	margin-right: 10px;
 }

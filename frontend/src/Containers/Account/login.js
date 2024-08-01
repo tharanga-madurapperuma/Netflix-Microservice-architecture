@@ -45,6 +45,7 @@ const Login = () => {
       if(email === "" || password === ""){
         alert("Please enter email and password..!");
       }
+      
       else{
         if(admin.email === email && admin.password === password){
           login = true;
@@ -63,6 +64,7 @@ const Login = () => {
         login = true;
         let loggedUser = JSON.stringify(GUser);
         localStorage.setItem("loggedUser", loggedUser);
+        localStorage.setItem("userEmail", GUser.email);
         navigate('/');
         
       }

@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { myflix, regularUser } from '../../assets/images'
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const navigate = useNavigate();
-  return (
+    const [user, setUser] = useState('');
+    
+    useEffect(() => {
+        if(localStorage.getItem("loggedUser") != null){
+            setUser(JSON.parse(localStorage.getItem("loggedUser")));
+        }
+    },[]);
+
+  return (          
     <div className='navBar'>
         <div className='navBar__image'>
             <img src={myflix} alt='Myflix Logo'/>
@@ -17,11 +25,15 @@ const Navbar = () => {
                 <li href='#' onClick={() => {navigate("/docs")}}>Documentaries</li>
             </ul>
         <div className='navBar__user' onClick={() => {
-            if(localStorage.getItem("user") == null){
+            if(localStorage.getItem("loggedUser") == null){
                 navigate('/login');
             }
         }}>
-            <img src={regularUser} alt='Regular User'/>
+            <div>
+                <img src={regularUser} alt='Regular User'/>
+                <p>{user?.name || "Guest"}</p>
+            </div>
+            
         </div>
     </div>
   )

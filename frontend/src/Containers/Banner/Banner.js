@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const Banner = () => {
 
     const [movie, setMovie] = useState('');
+    const [users, setUsers] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,11 +27,33 @@ const Banner = () => {
           }
         }
 
-        fetchData();
-    }, []);
+        const fetchUsers = async () => {
+          try {
+            const result = await fetch('http://localhost:8081/getAllGUser');
+            setUsers(await result.json());
 
-    console.log(movie);
+          } catch (error) {
+            console.log(error)
+          }
+        }
+
+        fetchData();
+        fetchUsers();
+    }, []);
     
+    
+    useEffect(() => {
+      if (users.length > 0) {
+          let newUser = localStorage.getItem("userEmail");
+          users?.map(user => {
+              if (newUser === user.email) {
+                  let loggedUser = JSON.stringify(user);
+                  localStorage.setItem("loggedUser", loggedUser);
+                  console.log(localStorage);
+              }
+          });
+      }
+  }, [users]);
 
   return (
     <div className='banner_wrapper'>
@@ -52,12 +75,16 @@ const Banner = () => {
         <img src=""></img>
         <h4>Duration: {movie?.watch_time} min</h4>
         <h3>{movie?.vote_average}</h3>
-        <h5>{movie?.genres}</h5>
+        <div>
+          {movie?.genres?.map((genre, index) => (
+            <span key={index}>{genre} | </span>
+          ))}
+        </div>
         <h2>{movie?.name}</h2>
         <p>{movie?.overview}</p>
         
         <div className='banner__content-buttons'>
-          <button onClick={() => {navigate(`/movieTrailer/${movie.movie_id}`)}} className='banner__content-buttons_watchButton buttons'><FontAwesomeIcon className="icon" icon={faPlay}/>WATCH</button>
+          <button onClick={() => {navigate(`/movieTrailer/${movie?.movie_id}`)}} className='banner__content-buttons_watchButton buttons'><FontAwesomeIcon className="icon" icon={faPlay}/>WATCH</button>
           <button className='banner__content-buttons_addListButton buttons'><FontAwesomeIcon className="icon" icon={faPlus}/>ADD LIST</button>
         </div>
       </div>
