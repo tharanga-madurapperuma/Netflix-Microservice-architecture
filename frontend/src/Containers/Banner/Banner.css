@@ -1,5 +1,7 @@
 * {
 	font-family: "Roboto", sans-serif;
+	margin: 0;
+	padding: 0;
 }
 
 .banner_wrapper {
@@ -31,6 +33,7 @@
 		rgba(7, 9, 18, 0) 100%
 	);
 	z-index: 1;
+	pointer-events: none;
 }
 
 .banner__topGradient {
@@ -45,6 +48,7 @@
 		rgba(7, 9, 18, 0) 50%
 	);
 	z-index: 1;
+	pointer-events: none;
 }
 
 .banner__bottomGradient {
@@ -59,6 +63,7 @@
 		rgba(7, 9, 18, 0) 50%
 	);
 	z-index: 1;
+	pointer-events: none;
 }
 
 .banner__content {

@@ -48,9 +48,32 @@ const SignUp = () => {
     else{
       saveUserData(name, email, password);
 
+      const user = {
+        name: name,
+        email: email,
+        password: password
+      }
+
       localStorage.setItem("userEmail", email);
+      let loggedUser = JSON.stringify(user);
+      localStorage.setItem("loggedUser", loggedUser);
+
       navigate('/');
       
+      const sendEmail = async () => {
+        fetch(`http://localhost:8081/registration/${email}`,{
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: name,
+            subject: "Registration to MYFLIX"
+          })
+        })
+      }
+      sendEmail();
     }
   }
 
@@ -63,7 +86,7 @@ const SignUp = () => {
                 <input required className='login-box-userInputs' type='text' placeholder='Enter your name' id='name'></input>
                 {/* <input className='login-box-userInputs' type='text' placeholder='Enter your last name'></input> */}
                 <input required className='login-box-userInputs' type='text' placeholder='Enter your email' id='email' value={email} onChange={event => setEmail(event.target.value)}></input>
-                <input className='login-box-userInputs' type='text' placeholder='Enter your password' id='password'></input>
+                <input className='login-box-userInputs' type='password' placeholder='Enter your password' id='password'></input>
                 {/* <label className='login-box-profileText'>Upload a profile picture</label> */}
                 {/* <input className='login-box-userInputs' type='file' /> */}
                 <label required className='login-box-linkToPage' onClick={() => {navigate('/login')}}>👉 Are you a existing user? Login here...</label>

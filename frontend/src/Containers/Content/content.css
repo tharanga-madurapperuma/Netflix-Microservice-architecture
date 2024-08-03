@@ -8,12 +8,21 @@
 	font-family: "Roboto", san-serif;
 }
 
+.wrapper__content::-webkit-scrollbar {
+	display: none;
+}
+
 .content_container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: auto;
+	height: 100vh;
 	width: 100%;
+	overflow-y: scroll;
+}
+
+.content_container::-webkit-scrollbar {
+	display: none;
 }
 
 .content_container h1 {
@@ -101,4 +110,20 @@ textarea {
 	border: none;
 	width: 90%;
 	height: 100px;
+}
+
+.checkInput {
+	margin-right: -200px;
+	margin-left: -200px;
+}
+
+#button_movie,
+#button_series,
+#button_doc {
+	margin-bottom: 100px;
+	background-color: var(--color-blue);
+	border-radius: 6px;
+	padding: 10px 25px;
+	cursor: pointer;
+	margin-top: 20px;
 }

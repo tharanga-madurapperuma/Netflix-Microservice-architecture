@@ -25,8 +25,11 @@ const Navbar = () => {
                 <li href='#' onClick={() => {navigate("/docs")}}>Documentaries</li>
             </ul>
         <div className='navBar__user' onClick={() => {
-            if(localStorage.getItem("loggedUser") == null){
+            if(localStorage.getItem("loggedUser") == "null"){
                 navigate('/login');
+            }
+            else{
+                navigate('/logout');
             }
         }}>
             <div>

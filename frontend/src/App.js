@@ -13,6 +13,7 @@ import {
   Route,
   Routes
 } from "react-router-dom";
+import Logout from './Containers/logout/logout.js';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='/seriesTrailer/:series_id' element={<TVSeriesTrailer/>}/>
           <Route path='/docTrailer/:doc_id' element={<DocTrailer/>}/>
           <Route path="/addContent" element={<Content/>}/>
+          <Route path="/logout" element={<Logout/>}/>
         </Routes>
       </Router>
     </div>

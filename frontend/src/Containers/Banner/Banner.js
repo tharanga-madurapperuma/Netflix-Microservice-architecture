@@ -11,6 +11,8 @@ const Banner = () => {
     const [users, setUsers] = useState('');
     const navigate = useNavigate();
 
+    console.log(localStorage);
+
     useEffect(() => {
         const fetchData = async () => {
           try {
