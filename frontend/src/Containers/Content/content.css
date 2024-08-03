@@ -41,10 +41,64 @@
 }
 
 .container-box select {
-	padding: 5px 25px;
+	padding: 8px 25px;
 	margin-top: 5px;
 	background-color: #241f41;
 	color: #ffffff;
 	outline: none;
 	border: none;
+}
+
+.container-box_addMovie {
+	display: none;
+}
+.container-box_addDoc {
+	display: none;
+}
+.container-box_addSeries {
+	display: none;
+}
+
+.container-box_addMovie > form label,
+.container-box_addDoc > form label,
+.container-box_addSeries > form label {
+	font-size: 0.9rem;
+	font-weight: 400;
+	color: #c1c9fa;
+}
+
+.container-box_addMovie > form input,
+.container-box_addDoc > form input,
+.container-box_addSeries > form input {
+	padding: 8px 25px;
+	margin-top: 5px;
+	background-color: #241f41;
+	color: #ffffff;
+	outline: none;
+	border: none;
+	margin-bottom: 15px;
+}
+
+.addMovie-outerTable {
+	width: 100%;
+	margin: 20px 50px;
+}
+
+.addMovie-innerTable {
+	width: 100%;
+}
+
+.addMovie-innerTable tr input {
+	width: 80%;
+}
+
+textarea {
+	padding: 8px 25px;
+	margin-top: 5px;
+	background-color: #241f41;
+	color: #ffffff;
+	outline: none;
+	border: none;
+	width: 90%;
+	height: 100px;
 }

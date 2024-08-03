@@ -12,7 +12,27 @@ const Content = () => {
 
     function checkContent(){
         const inputContent = document.getElementById("inputContent").value
-        
+        switch(inputContent){
+            case "Movie":
+                document.querySelector(".container-box_addMovie").style.display = "block";
+                document.querySelector(".container-box_addDoc").style.display = "none";
+                document.querySelector(".container-box_addSeries").style.display = "none";
+                break;
+            case "TV Series":
+                document.querySelector(".container-box_addSeries").style.display = "block";
+                document.querySelector(".container-box_addMovie").style.display = "none";
+                document.querySelector(".container-box_addDoc").style.display = "none";
+                break;
+            case "Documentary":
+                document.querySelector(".container-box_addDoc").style.display = "block";
+                document.querySelector(".container-box_addMovie").style.display = "none";
+                document.querySelector(".container-box_addSeries").style.display = "none";
+                break;
+            default:
+                document.querySelector(".container-box_addDoc").style.display = "none";
+                document.querySelector(".container-box_addMovie").style.display = "none";
+                document.querySelector(".container-box_addSeries").style.display = "none";
+        }
     }
 
     return(
@@ -30,15 +50,138 @@ const Content = () => {
                     </select>
                     <div className="container-box_addMovie">
                         <form>
-                            <label>Enter the film name</label>
-                            <input></input>
+                            <table className="addMovie-outerTable">
+                                <tr>
+                                    <table className="addMovie-innerTable">
+                                        <tr>
+                                            <td>
+                                                <label>Movie name</label><br></br>
+                                                <input type="text" id="name" requirede></input>
+                                            </td>
+                                            <td>
+                                                <label>Language</label><br></br>
+                                                <input type="text" id="original_language" required></input>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>Release Date</label><br></br>
+                                                <input type="text" id="release_date"required></input>
+                                            </td>
+                                            <td>
+                                                <label>Trailer</label><br></br>
+                                                <input type="text" id="trailer" required></input>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>Backdrop path</label><br></br>
+                                                <input type="text" id="backdrop_path" required></input>
+                                            </td>
+                                            <td>
+                                                <label>Poster Path</label><br></br>
+                                                <input type="text" id="poster_path" required></input>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>Watch Time</label><br></br>
+                                                <input type="text" id="watch_time" required></input>
+                                            </td>
+                                            <td>
+                                                <label>Vote Average</label><br></br>
+                                                <input type="text" id="vore_average" required></input>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            <label>Adult</label><br></br>
+                                                <select id="adult">
+                                                    <option selected>Choose True or False</option>
+                                                    <option>True</option>
+                                                    <option>False</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </tr>
+                                <tr>
+                                    <label>Overview</label><br></br>
+                                    <textarea></textarea>
+                                </tr>
+                            </table>
+                            
                         </form>
                     </div>
                     <div className="container-box_addSeries">
-
+                    <form>
+                            <table className="addMovie-outerTable">
+                                <tr>
+                                    <table className="addMovie-innerTable">
+                                        <tr>
+                                            <td>
+                                                <label>TV Series name</label><br></br>
+                                                <input required></input>
+                                            </td>
+                                            <td>
+                                                <label>Language</label><br></br>
+                                                <input required></input>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>Language</label><br></br>
+                                                <input required></input>
+                                            </td>
+                                            <td>
+                                                <label>Trailer</label><br></br>
+                                                <input required></input>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </tr>
+                                <tr>
+                                    <label>Overview</label><br></br>
+                                    <textarea></textarea>
+                                </tr>
+                            </table>
+                            
+                        </form>
                     </div>
                     <div className="container-box_addDoc">
-
+                    <form>
+                            <table className="addMovie-outerTable">
+                                <tr>
+                                    <table className="addMovie-innerTable">
+                                        <tr>
+                                            <td>
+                                                <label>Documentary name</label><br></br>
+                                                <input required></input>
+                                            </td>
+                                            <td>
+                                                <label>Language</label><br></br>
+                                                <input required></input>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>Language</label><br></br>
+                                                <input required></input>
+                                            </td>
+                                            <td>
+                                                <label>Trailer</label><br></br>
+                                                <input required></input>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </tr>
+                                <tr>
+                                    <label>Overview</label><br></br>
+                                    <textarea></textarea>
+                                </tr>
+                            </table>
+                            
+                        </form>
                     </div>
                 </div>
             </div>
@@ -47,29 +190,3 @@ const Content = () => {
 }
 
 export default Content;
-
-/*
-
-public String name;
-    public String overview;
-    private String[] genres;
-    private String backdrop_path;
-    private String poster_path;
-    public boolean adult;
-    public String original_language;
-    public String release_date;
-    private float vote_average;
-
-    MOVIE
-    private String movie_id;
-    public int watch_time;
-
-    TVSERIES
-     private String series_id;
-    public int num_of_seasons;
-    public int num_of_episodes;
-
-    DOC
-    private String doc_id;
-    public int watch_time;
-*/
