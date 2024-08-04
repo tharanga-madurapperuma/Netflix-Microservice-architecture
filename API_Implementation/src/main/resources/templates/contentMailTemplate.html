@@ -1,0 +1,63 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title th:text="${subject}">Content Update</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            font-family: "Roboto", san-serif;
+        }
+
+        .wrapper{
+            text-align:left;
+            background-color: #dde1eb;
+            padding-left: 20px;
+        }
+
+        .name{
+            color: #2853c9 !important;
+        }
+
+        h1{
+            font-weight: 700;
+            font-size: 3rem;
+            padding-top: 100px;
+        }
+
+        p{
+            font-size: 1.2rem;
+        }
+
+        .content{
+            margin-left: 20px;
+            color: #2853c9;
+            font-weight: 600;
+            padding-bottom: 100px;
+            line-height: 1.8rem;
+        }
+
+        .content span{
+            margin-left: 20px;
+            color: rgb(50,50,50);
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <h1>Hello <span class="name" th:text="${name}"></span>..!</h1><br>
+    <p>New content update alert..!</p><br><br>
+    <div class="content">
+        Name: <span class="nameContent" th:text="${nameContent}"></span><br>
+        Content Type: <span class="content" th:text="${content}"></span><br>
+        Language: <span class="original_language" th:text="${original_language}"></span><br>
+        Release Date: <span class="release_date" th:text="${release_date}"></span><br>
+        Vote Average: <span class="vote_average" th:text="${vote_average}"></span><br>
+        Trailer: <span class="trailer" th:text="${trailer}"></span><br>
+        Overview: <br><span class="overview" th:text="${overview}"></span><br>
+    </div>
+
+</div>
+</body>
+</html>

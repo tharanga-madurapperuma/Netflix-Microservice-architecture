@@ -19,6 +19,6 @@ public class Movie extends Content{
     public static final String SEQUENCE_NAME = "movie_sequence";
 
     @Id
-    private long movie_id;
+    private String movie_id;
     public int watch_time;
 }

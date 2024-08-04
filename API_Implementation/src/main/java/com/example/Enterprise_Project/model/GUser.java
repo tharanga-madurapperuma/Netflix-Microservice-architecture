@@ -9,17 +9,15 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @EqualsAndHashCode(callSuper = true)
-@Document
 @Data
-@NoArgsConstructor
+@Document
 @AllArgsConstructor
-public class TVSeries extends Content{
+@NoArgsConstructor
+public class GUser extends User{
 
     @Transient
-    public static final String SEQUENCE_NAME = "tvSeries_sequence";
+    public static final String SEQUENCE_NAME="gUser_sequence";
 
     @Id
-    private String series_id;
-    public int num_of_seasons;
-    public int num_of_episodes;
+    private String gUser_id;
 }

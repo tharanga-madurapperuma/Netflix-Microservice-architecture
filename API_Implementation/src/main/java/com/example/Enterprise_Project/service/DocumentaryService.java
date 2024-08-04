@@ -1,8 +1,9 @@
 package com.example.Enterprise_Project.service;
 
 import com.example.Enterprise_Project.model.DatabaseSequence;
+import com.example.Enterprise_Project.model.Documentary;
 import com.example.Enterprise_Project.model.Movie;
-import com.example.Enterprise_Project.repository.MovieRepository;
+import com.example.Enterprise_Project.repository.DocumentaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
@@ -17,34 +18,29 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
 @Service
-public class MovieService {
+public class DocumentaryService {
 
     @Autowired
-    private MovieRepository movieRepository;
+    private DocumentaryRepository documentaryRepository;
 
-    public Movie addMovie(Movie movie){
-        movie.setMovie_id(generateSequence(Movie.SEQUENCE_NAME));
-        return movieRepository.save(movie);
+    public Documentary addDoc(Documentary documentary){
+        documentary.setDoc_id(generateSequence(Documentary.SEQUENCE_NAME));
+        return documentaryRepository.save(documentary);
     }
 
-    public List<Movie> getAllMovies(){
-        return movieRepository.findAll();
+    public List<Documentary> getAllDocs(){
+        return documentaryRepository.findAll();
     }
 
-    public Movie getMovieById(String movie_id){
-        Optional<Movie> movie = movieRepository.findById(movie_id);
-        if(movie.isPresent()){
-            return movie.get();
+    public Documentary getDocById(String doc_id){
+        Optional<Documentary> documentary = documentaryRepository.findById(doc_id);
+        if(documentary.isPresent()){
+            return documentary.get();
         }
         else{
             throw new RuntimeException();
         }
     }
-
-//    public Movie getMovieById(String movie_id){
-//        Movie existingMovie = movieRepository.findById(movie_id).orElseThrow(RuntimeException::new);
-//        existingMovie =
-//    }
 
     @Autowired
     private MongoOperations mongoOperations;
@@ -53,6 +49,6 @@ public class MovieService {
         DatabaseSequence counter = mongoOperations.findAndModify(query(where("_id").is(seqName)),
                 new Update().inc("seq",1), options().returnNew(true).upsert(true),
                 DatabaseSequence.class);
-        return "M" + (!Objects.isNull(counter) ? counter.getSeq() : 1);
+        return "D" + (!Objects.isNull(counter) ? counter.getSeq() : 1);
     }
 }

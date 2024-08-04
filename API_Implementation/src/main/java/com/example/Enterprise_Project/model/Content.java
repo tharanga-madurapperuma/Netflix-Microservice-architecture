@@ -19,4 +19,5 @@ public class Content {
     public String original_language;
     public String release_date;
     private float vote_average;
+    public String trailer;
 }

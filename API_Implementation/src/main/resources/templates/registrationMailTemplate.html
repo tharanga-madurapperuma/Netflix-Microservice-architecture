@@ -1,0 +1,50 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title th:text="${subject}">Registration Successful</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            font-family: "Roboto", san-serif;
+        }
+
+        .wrapper{
+            background-color: #dde1eb;
+            text-align:center;
+        }
+
+        .name{
+            color: #2853c9;
+        }
+        h1{
+            font-weight: 700;
+            font-size: 3rem;
+            padding-top: 100px;
+        }
+
+        .brand{
+            color: red;
+            font-weight: 600;
+        }
+
+        h3{
+            font-size: 1.5rem;
+            color: rgb(30,30,30);
+        }
+
+        p{
+            font-size: 1.2rem;
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <h1>Welcome <span class="name" th:text="${name}"></span>..!</h1><br><br>
+
+    <h3>You were successfully registered to the <span class="brand">MYFLIX</span>.</h3><br>
+    <p>We will send new content updates to you.</p>
+</div>
+</body>
+</html>

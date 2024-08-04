@@ -5,14 +5,12 @@ import com.example.Enterprise_Project.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class MovieController {
 
     @Autowired
@@ -26,5 +24,10 @@ public class MovieController {
     @GetMapping("/getAllMovies")
     public List<Movie> getAllMovies(){
         return movieService.getAllMovies();
+    }
+
+    @GetMapping("/getMovieById/{movie_id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable("movie_id") String movie_id){
+        return new ResponseEntity<Movie>(movieService.getMovieById(movie_id), HttpStatus.CREATED);
     }
 }
