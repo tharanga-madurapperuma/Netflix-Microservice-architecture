@@ -17,8 +17,7 @@ This documentation will guide you through the available endpoints, request and r
 <h3>1.2 Base URL</h3>	
 Here are the Base URL for all API end points. You can GET, POST or DELETE data easily using this URL.
 <br>
-> [!TIP]
-> http://localhost/8081
+**http://localhost/8081**
 
 <br><br><br>
 <h1>2. Authentication</h1>
